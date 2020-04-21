@@ -1,17 +1,32 @@
 
-
-# valid
 def square_validation(square):
+    """
+    Check if square points is valid
+    :param square: square object
+    :return: true if valid else false
+    """
     return 0 <= square['x1'] < square['x2'] and 0 <= square['y1'] < square['y2']
 
 
-# valid
 def circle_validation(circle):
+    """
+    Check if square circle is valid
+    :param circle: circle object
+    :return: true if valid else false
+    """
     return not (circle['x'] < 0 or circle['y'] < 0 or circle['radius'] < 0
                 or (circle['x'] - circle['radius']) < 0 or (circle['y'] - circle['radius']) < 0)
 
 
 def squares_intersection(s1, s2):
+    """
+    Check intersection between two squares
+    :param s1: first square object
+    :param s2: second square object
+    :return: "invalid" if one of the squares is invalid
+             "separate"  if squares are separate
+             "intersect" if squares are intersect
+    """
     if not (square_validation(s1) and square_validation(s2)):
         return "invalid"
     # determine the coordinates of the intersection
@@ -23,6 +38,14 @@ def squares_intersection(s1, s2):
 
 
 def circles_intersection(c1, c2):
+    """
+    Check intersection between two circles
+    :param c1: first circle object
+    :param c2: second circle object
+    :return: "invalid" if one of the circles is invalid
+             "separate"  if circles are separate
+             "intersect" if circles are intersect
+    """
     if not (circle_validation(c1) and circle_validation(c2)):
         return "invalid"
     # determine the coordinates of the intersection
@@ -34,6 +57,14 @@ def circles_intersection(c1, c2):
 
 
 def others_intersection(s1, c2):
+    """
+    Check intersection between square and circle
+    :param s1: square object
+    :param c2: circle object
+    :return: "invalid" if one of them is invalid
+             "separate"  if they are separate
+             "intersect" if they are intersect
+    """
     if not (square_validation(s1) and circle_validation(c2)):
         return "invalid"
     # determine the coordinates of the intersection
@@ -44,9 +75,12 @@ def others_intersection(s1, c2):
     return "separate" if (x_right < x_left or y_bottom < y_top) else "intersect"
 
 
-# square1 = {'type': 'square', 'key': 0, 'x1': 3, 'y1': 3, 'x2': 5, 'y2': 5}
-# circle1 = {'type': 'circle', 'key': 1, 'x': 3, 'y': 3, 'radius': 2}
 def compare_sort_array(arr):
+    """
+    This method find separate objects from a given array and return array of separate object sorted by key
+    :param arr: given objects array
+    :return: array of separate object sorted by key
+    """
     sorted_array = []
     intersected_array = []
     for i in range(0, len(arr)):
@@ -69,6 +103,15 @@ def compare_sort_array(arr):
 
 
 def type_intersection(type_obj1, obj1, obj2):
+    """
+    This method examines the type of objects and refers to the appropriate intersection method
+    :param type_obj1: type of compared object
+    :param obj1: compared object
+    :param obj2: second object
+    :return: "invalid" if one of them is invalid
+             "separate"  if they are separate
+             "intersect" if they are intersect
+    """
     if type_obj1 == 'square' and obj2['type'] == 'square':
         ans = squares_intersection(obj1, obj2)
     elif type_obj1 == 'circle' and obj2['type'] == 'circle':

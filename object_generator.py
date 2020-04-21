@@ -2,6 +2,13 @@ import random
 
 
 def square_generator(limit):
+    """
+    This method creates random squares and rectangles
+    :param limit: given reference range
+    :return: square object
+    example: {'type': 'square', 'x1': 3, 'y1': 2, 'x2': 5, 'y2': 5}
+    """
+    # if we want just squares need to change y = x, example: y_first_point = x_first_point
     x_first_point = random.choice(range(0, limit))
     y_first_point = random.choice(range(0, limit))
     x_second_point = random.choice(range(0, limit))
@@ -10,6 +17,12 @@ def square_generator(limit):
 
 
 def circle_generator(limit):
+    """
+    This method creates random circles
+    :param limit: given reference range
+    :return: circle object
+    example: {'type': 'circle', 'x': 3, 'y': 3, 'radius': 2}
+    """
     x_center = random.choice(range(0, limit))
     y_center = random.choice(range(0, limit))
     radius = random.choice(range(0, int(limit / 2)))
@@ -17,6 +30,14 @@ def circle_generator(limit):
 
 
 def generate_array(size, limit):
+    """
+    This method creates array of objects
+    :param size: give size array, number of objects
+    :param limit: given reference range
+    :return: array of objects
+    example: [{'type': 'square', 'x1': 3, 'y1': 2, 'x2': 5, 'y2': 5, 'key': 0},
+              {'type': 'circle', 'x': 3, 'y': 3, 'radius': 2, 'key': 1}]
+    """
     array = []
     for i in range(0, size):
         rnd = random.choice([0, 1])
