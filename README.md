@@ -1,4 +1,5 @@
 # stratasysProject
+
 In this project, we generate random shapes and check if they separate.
 
 The objects look like:
