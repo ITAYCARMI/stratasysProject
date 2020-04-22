@@ -9,8 +9,8 @@ class BoundingBox(object):
     def area(self):
         pass
 
-    @staticmethod
-    def generate(limit):
+    @classmethod
+    def generate(cls, limit):
         pass
 
 
@@ -21,8 +21,8 @@ class BoundingBoxCircle(BoundingBox):
         self.y = y
         self.radius = radius
 
-    @staticmethod
-    def generate(limit):
+    @classmethod
+    def generate(cls, limit):
         """
         This method creates random circles
         :param limit: given reference range
@@ -34,7 +34,7 @@ class BoundingBoxCircle(BoundingBox):
         x_center = random.choice(range(0, limit))
         y_center = random.choice(range(0, limit))
         radius = random.choice(range(0, int(limit / 2)))
-        return BoundingBoxCircle(x_center, y_center, radius)
+        return cls(x_center, y_center, radius)
 
     def area(self):
         """
@@ -68,8 +68,8 @@ class BoundingBoxRectangle(BoundingBoxQuadrangle):
         self.x2 = x2
         self.y2 = y2
 
-    @staticmethod
-    def generate(limit):
+    @classmethod
+    def generate(cls, limit):
         """
         This method creates random rectangles
         :param limit: given reference range
@@ -82,7 +82,7 @@ class BoundingBoxRectangle(BoundingBoxQuadrangle):
         y_first_point = random.choice(range(0, limit))
         x_second_point = random.choice(range(0, limit))
         y_second_point = random.choice(range(0, limit))
-        return BoundingBoxRectangle(x_first_point, y_first_point, x_second_point, y_second_point)
+        return cls(x_first_point, y_first_point, x_second_point, y_second_point)
 
 
 class BoundingBoxSquare(BoundingBoxQuadrangle):
@@ -93,8 +93,8 @@ class BoundingBoxSquare(BoundingBoxQuadrangle):
         self.x2 = x2
         self.y2 = x2
 
-    @staticmethod
-    def generate(limit):
+    @classmethod
+    def generate(cls, limit):
         """
         This method creates random squares
         :param limit: given reference range
@@ -105,7 +105,7 @@ class BoundingBoxSquare(BoundingBoxQuadrangle):
             return "invalid"
         first_point = random.choice(range(0, limit))
         second_point = random.choice(range(0, limit))
-        return BoundingBoxSquare(first_point, second_point)
+        return cls(first_point, second_point)
 
 
 def generate_array(size, limit):
