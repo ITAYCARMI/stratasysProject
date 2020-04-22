@@ -1,6 +1,5 @@
 import utils
 import object_generator
-import test_object_generator, test_utils
 
 
 def integration_test(size, limit):
@@ -19,5 +18,4 @@ def integration_test(size, limit):
     [print(vars(a)) for a in utils.compare_sort_array(array)]
 
 
-if __name__ == "__main__":
-    integration_test(10, 50)
+integration_test(10, 50)

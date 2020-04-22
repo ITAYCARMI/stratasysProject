@@ -1,3 +1,5 @@
+import object_generator
+
 
 def quadrangle_validation(quadrangle):
     """
@@ -65,7 +67,7 @@ def others_intersection(q1, c2):
              "separate"  if they are separate
              "intersect" if they are intersect
     """
-    if q1.type == 'circle':
+    if type(q1) is object_generator.BoundingBoxCircle:
         temp = c2
         c2 = q1
         q1 = temp
@@ -88,14 +90,15 @@ def compare_sort_array(arr):
     sorted_array = []
     intersected_array = set()
     for i in range(0, len(arr)):
-        type_i = arr[i].type
-        if (type_i == 'square' or type_i == 'rectangle') and not quadrangle_validation(arr[i]):
+        type_i = type(arr[i])
+        if (type_i is object_generator.BoundingBoxSquare or type_i is object_generator.BoundingBoxRectangle) \
+                and not quadrangle_validation(arr[i]):
             continue
-        elif type_i == 'circle' and not circle_validation(arr[i]):
+        elif type_i is object_generator.BoundingBoxCircle and not circle_validation(arr[i]):
             continue
         j = i + 1
         while j < len(arr):
-            if type_intersection(type_i, arr[i], arr[j]) == "intersect":
+            if type_intersection(arr[i], arr[j]) == "intersect":
                 intersected_array.add(arr[i])
                 intersected_array.add(arr[j])
             j += 1
@@ -104,19 +107,20 @@ def compare_sort_array(arr):
     return sorted(sorted_array, key=lambda obj: obj.area())
 
 
-def type_intersection(type_obj1, obj1, obj2):
+def type_intersection(obj1, obj2):
     """
     This method examines the type of objects and refers to the appropriate intersection method
-    :param type_obj1: type of compared object
     :param obj1: compared object
     :param obj2: second object
     :return: "invalid" if one of them is invalid
              "separate"  if they are separate
              "intersect" if they are intersect
     """
-    if (type_obj1 == 'square' or type_obj1 == 'rectangle') and (obj2.type == 'square' or obj2.type == 'rectangle'):
+    if (type(obj1) is object_generator.BoundingBoxSquare or type(obj1) is object_generator.BoundingBoxRectangle) \
+            and (type(obj2) is object_generator.BoundingBoxSquare
+                 or type(obj2) is object_generator.BoundingBoxRectangle):
         ans = quadrangles_intersection(obj1, obj2)
-    elif type_obj1 == 'circle' and obj2.type == 'circle':
+    elif type(obj1) is object_generator.BoundingBoxCircle and type(obj2) is object_generator.BoundingBoxCircle:
         ans = circles_intersection(obj1, obj2)
     else:
         ans = others_intersection(obj1, obj2)
