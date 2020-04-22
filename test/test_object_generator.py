@@ -5,30 +5,30 @@ def test_square_generator():
     """
     This method check the square_generator method
     """
-    assert object_generator.BoundingBoxSquare.square_generator(5)
-    assert object_generator.BoundingBoxSquare.square_generator(15)
-    assert object_generator.BoundingBoxSquare.square_generator(-5)
-    assert object_generator.BoundingBoxSquare.square_generator(-15)
+    assert object_generator.BoundingBoxSquare.generate(5)
+    assert object_generator.BoundingBoxSquare.generate(15)
+    assert object_generator.BoundingBoxSquare.generate(-5)
+    assert object_generator.BoundingBoxSquare.generate(-15)
 
 
 def test_rectangle_generator():
     """
     This method check the rectangle_generator method
     """
-    assert object_generator.BoundingBoxRectangle.rectangle_generator(5)
-    assert object_generator.BoundingBoxRectangle.rectangle_generator(15)
-    assert object_generator.BoundingBoxRectangle.rectangle_generator(-5)
-    assert object_generator.BoundingBoxRectangle.rectangle_generator(-15)
+    assert object_generator.BoundingBoxRectangle.generate(5)
+    assert object_generator.BoundingBoxRectangle.generate(15)
+    assert object_generator.BoundingBoxRectangle.generate(-5)
+    assert object_generator.BoundingBoxRectangle.generate(-15)
 
 
 def test_circle_generator():
     """
     This method check the circle_generator method
     """
-    assert object_generator.BoundingBoxCircle.circle_generator(5)
-    assert object_generator.BoundingBoxCircle.circle_generator(15)
-    assert object_generator.BoundingBoxCircle.circle_generator(-5)
-    assert object_generator.BoundingBoxCircle.circle_generator(-15)
+    assert object_generator.BoundingBoxCircle.generate(5)
+    assert object_generator.BoundingBoxCircle.generate(15)
+    assert object_generator.BoundingBoxCircle.generate(-5)
+    assert object_generator.BoundingBoxCircle.generate(-15)
 
 
 def test_generate_array():

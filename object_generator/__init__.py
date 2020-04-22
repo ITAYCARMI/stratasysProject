@@ -9,6 +9,10 @@ class BoundingBox(object):
     def area(self):
         pass
 
+    @staticmethod
+    def generate(limit):
+        pass
+
 
 class BoundingBoxCircle(BoundingBox):
     def __init__(self, x, y, radius):
@@ -18,7 +22,7 @@ class BoundingBoxCircle(BoundingBox):
         self.radius = radius
 
     @staticmethod
-    def circle_generator(limit):
+    def generate(limit):
         """
         This method creates random circles
         :param limit: given reference range
@@ -33,6 +37,10 @@ class BoundingBoxCircle(BoundingBox):
         return BoundingBoxCircle(x_center, y_center, radius)
 
     def area(self):
+        """
+        This method calculate the circle area
+        :return: circle area
+        """
         return pi * (self.radius ** 2)
 
 
@@ -45,6 +53,10 @@ class BoundingBoxQuadrangle(BoundingBox):
         self.y2 = None
 
     def area(self):
+        """
+        This method calculate the quadrangle area
+        :return: quadrangle area
+        """
         return (self.x1 - self.x2)*(self.y1 - self.y2)
 
 
@@ -57,7 +69,7 @@ class BoundingBoxRectangle(BoundingBoxQuadrangle):
         self.y2 = y2
 
     @staticmethod
-    def rectangle_generator(limit):
+    def generate(limit):
         """
         This method creates random rectangles
         :param limit: given reference range
@@ -82,9 +94,9 @@ class BoundingBoxSquare(BoundingBoxQuadrangle):
         self.y2 = x2
 
     @staticmethod
-    def square_generator(limit):
+    def generate(limit):
         """
-        This method creates random squares and rectangles
+        This method creates random squares
         :param limit: given reference range
         :return: square object
         example: {'x1': 3, 'y1': 3, 'x2': 5, 'y2': 5}
@@ -112,10 +124,10 @@ def generate_array(size, limit):
     for i in range(0, size):
         rnd = random.choice([0, 1, 2])
         if rnd == 0:
-            obj = BoundingBoxSquare.square_generator(limit)
+            obj = BoundingBoxSquare.generate(limit)
         elif rnd == 1:
-            obj = BoundingBoxCircle.circle_generator(limit)
+            obj = BoundingBoxCircle.generate(limit)
         else:
-            obj = BoundingBoxRectangle.rectangle_generator(limit)
+            obj = BoundingBoxRectangle.generate(limit)
         array.append(obj)
     return array
